@@ -13,3 +13,10 @@ export const deleteBook = function (index) {
     payload: index,
   };
 };
+
+export const toggleFaforite = function (id) {
+  return {
+    type: a.TOGGLE_FAFORITE,
+    payload: id,
+  };
+};
