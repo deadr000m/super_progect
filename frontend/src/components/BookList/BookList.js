@@ -13,7 +13,7 @@ function BookList() {
         <ul>
           {books.map((item, index) => {
             return (
-              <li key={index}>
+              <li key={item.id}>
                 <div className="book-info">
                   {++index}. {item.title} by <strong>{item.author}</strong>
                 </div>
