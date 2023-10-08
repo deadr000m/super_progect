@@ -2,13 +2,22 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { deleteBook } from '../../redux/books/actionCreators';
+import { BsBookmarkCheckFill } from 'react-icons/bs';
+import { BsBookmarkCheck } from 'react-icons/bs';
+import { toggleFaforite } from '../../redux/books/actionCreators';
 import './BookList.css';
+import { BsBookmarkPlusFill } from 'react-icons/bs';
 
 function BookList() {
   let books = useSelector((state) => state.books);
   let dispatch = useDispatch();
+
   function deleteHandler(id) {
     dispatch(deleteBook(id));
+  }
+
+  function toggleHandler(id) {
+    dispatch(toggleFaforite(id));
   }
   return (
     <div className="app-block book-list">
@@ -24,6 +33,19 @@ function BookList() {
                   {++index}. {item.title} by <strong>{item.author}</strong>
                 </div>
                 <div className="book-actions">
+                  {item.isFaforite ? (
+                    <BsBookmarkCheckFill
+                      BsBookmarkCheck
+                      className="star-icon"
+                      onClick={() => toggleHandler(item.id)}
+                    />
+                  ) : (
+                    <BsBookmarkCheck
+                      className="star-icon"
+                      onClick={() => toggleHandler(item.id)}
+                    />
+                  )}
+
                   <button
                     onClick={() => {
                       deleteHandler(item.id);
