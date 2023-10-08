@@ -6,3 +6,10 @@ export const addBook = (newBook) => {
     payload: newBook,
   };
 };
+
+export const deleteBook = function (index) {
+  return {
+    type: a.DELETE_BOOK,
+    payload: index,
+  };
+};
