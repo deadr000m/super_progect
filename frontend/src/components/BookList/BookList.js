@@ -7,10 +7,15 @@ import { BsBookmarkCheck } from 'react-icons/bs';
 import { toggleFaforite } from '../../redux/books/actionCreators';
 import './BookList.css';
 import { BsBookmarkPlusFill } from 'react-icons/bs';
+import { selectTitleFilter } from '../../redux/slices/filterSlice';
 
 function BookList() {
   let books = useSelector((state) => state.books);
+  let titleFilter = useSelector(selectTitleFilter);
   let dispatch = useDispatch();
+  let filteredBooks = books.filter((book) => {
+    return book.title.toLowerCase().includes(titleFilter.toLowerCase());
+  });
 
   function deleteHandler(id) {
     dispatch(deleteBook(id));
@@ -26,7 +31,7 @@ function BookList() {
         <p>No booka avaible</p>
       ) : (
         <ul>
-          {books.map((item, index) => {
+          {filteredBooks.map((item, index) => {
             return (
               <li key={item.id}>
                 <div className="book-info">
