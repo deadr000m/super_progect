@@ -1,10 +1,13 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { deleteBook } from '../../redux/books/actionCreators';
+// import { deleteBook } from '../../redux/books/actionCreators';
+// import { toggleFaforite } from '../../redux/books/actionCreators';
+import { deleteBook } from '../../redux/slices/booksSlice';
+import { toggleFavorite } from '../../redux/slices/booksSlice';
 import { BsBookmarkCheckFill } from 'react-icons/bs';
 import { BsBookmarkCheck } from 'react-icons/bs';
-import { toggleFaforite } from '../../redux/books/actionCreators';
+
 import './BookList.css';
 import { BsBookmarkPlusFill } from 'react-icons/bs';
 import {
@@ -47,7 +50,7 @@ function BookList() {
   }
 
   function toggleHandler(id) {
-    dispatch(toggleFaforite(id));
+    dispatch(toggleFavorite(id));
   }
   return (
     <div className="app-block book-list">
