@@ -7,14 +7,22 @@ import { BsBookmarkCheck } from 'react-icons/bs';
 import { toggleFaforite } from '../../redux/books/actionCreators';
 import './BookList.css';
 import { BsBookmarkPlusFill } from 'react-icons/bs';
-import { selectTitleFilter } from '../../redux/slices/filterSlice';
+import {
+  selectTitleFilter,
+  selectAuthorFilter,
+} from '../../redux/slices/filterSlice';
 
 function BookList() {
-  let books = useSelector((state) => state.books);
-  let titleFilter = useSelector(selectTitleFilter);
+  let books = useSelector((state) => state.books); //массив книг из состояния
+  let titleFilter = useSelector(selectTitleFilter); //поле фильтра по заголовку
+  const authorFilter = useSelector(selectAuthorFilter); //поле фильтра по автору
+  console.log(authorFilter);
   let dispatch = useDispatch();
   let filteredBooks = books.filter((book) => {
-    return book.title.toLowerCase().includes(titleFilter.toLowerCase());
+    return (
+      book.title.toLowerCase().includes(titleFilter.toLowerCase()) &&
+      book.author.toLowerCase().includes(authorFilter.toLowerCase())
+    );
   });
 
   function deleteHandler(id) {
