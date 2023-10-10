@@ -29,6 +29,19 @@ function BookList() {
           book.author.toLowerCase().includes(authorFilter.toLowerCase());
   });
 
+  function highlightMatched(text, filter) {
+    if (!filter) return text;
+    let regex = new RegExp(`(${filter})`, 'gi');
+    let arr = text.split(regex);
+    return arr.map((item) => {
+      return item.toLowerCase() === filter.toLowerCase() ? (
+        <span className="highlight">{item}</span>
+      ) : (
+        item
+      );
+    });
+  }
+
   function deleteHandler(id) {
     dispatch(deleteBook(id));
   }
@@ -47,7 +60,8 @@ function BookList() {
             return (
               <li key={item.id}>
                 <div className="book-info">
-                  {++index}. {item.title} by <strong>{item.author}</strong>
+                  {++index}. {highlightMatched(item.title, titleFilter)} by{' '}
+                  <strong>{highlightMatched(item.author, authorFilter)}</strong>
                 </div>
                 <div className="book-actions">
                   {item.isFaforite ? (
