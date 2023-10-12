@@ -1,4 +1,5 @@
 import './BookForm.css';
+import { setError } from '../../redux/slices/errorSlice';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
@@ -34,6 +35,8 @@ export const BookForm = () => {
 
       setAuthor('');
       setTitle('');
+    } else {
+      dispatch(setError('You must fill title and author'));
     }
   }
   return (
