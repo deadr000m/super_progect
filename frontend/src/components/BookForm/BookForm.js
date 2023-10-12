@@ -7,7 +7,7 @@ import { books } from '../../data/books';
 // import { createBookWithID } from '../../utils/createBookWithID';
 import createBookWithID from '../../utils/createBookWithID';
 import { addBook } from '../../redux/slices/booksSlice';
-import { thunkFunction } from '../../redux/slices/booksSlice';
+import { fetchBook } from '../../redux/slices/booksSlice';
 
 export const BookForm = () => {
   const [author, setAuthor] = useState('');
@@ -15,7 +15,7 @@ export const BookForm = () => {
   const dispatch = useDispatch();
 
   async function handleAddRandomBookViaAPI() {
-    dispatch(thunkFunction);
+    dispatch(fetchBook());
   }
 
   function handleAddRandomBook() {
