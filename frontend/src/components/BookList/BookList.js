@@ -64,7 +64,8 @@ function BookList() {
               <li key={item.id}>
                 <div className="book-info">
                   {++index}. {highlightMatched(item.title, titleFilter)} by{' '}
-                  <strong>{highlightMatched(item.author, authorFilter)}</strong>
+                  <strong>{highlightMatched(item.author, authorFilter)}</strong>{' '}
+                  ({item.source})
                 </div>
                 <div className="book-actions">
                   {item.isFaforite ? (
