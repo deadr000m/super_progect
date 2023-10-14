@@ -9,14 +9,21 @@ import { books } from '../../data/books';
 import createBookWithID from '../../utils/createBookWithID';
 import { addBook } from '../../redux/slices/booksSlice';
 import { fetchBook } from '../../redux/slices/booksSlice';
+import { FaSpinner } from 'react-icons/fa';
 
 export const BookForm = () => {
   const [author, setAuthor] = useState('');
   const [title, setTitle] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
   async function handleAddRandomBookViaAPI() {
-    dispatch(fetchBook('http://localhost:4000/random-book'));
+    try {
+      setIsLoading(true);
+      await dispatch(fetchBook('http://localhost:4000/random-book-delay'));
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   function handleAddRandomBook() {
@@ -66,9 +73,19 @@ export const BookForm = () => {
           {' '}
           Add random
         </button>
-        <button type="button" onClick={handleAddRandomBookViaAPI}>
-          {' '}
-          Add Random via API
+        <button
+          type="button"
+          onClick={handleAddRandomBookViaAPI}
+          disabled={isLoading}
+        >
+          {isLoading ? (
+            <>
+              <span>Loading book...</span>
+              <FaSpinner className="spinner"></FaSpinner>
+            </>
+          ) : (
+            'Add Random via API'
+          )}
         </button>
       </form>
     </div>
