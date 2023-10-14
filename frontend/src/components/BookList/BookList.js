@@ -7,6 +7,7 @@ import { deleteBook } from '../../redux/slices/booksSlice';
 import { toggleFavorite } from '../../redux/slices/booksSlice';
 import { BsBookmarkCheckFill } from 'react-icons/bs';
 import { BsBookmarkCheck } from 'react-icons/bs';
+import { selectBook } from '../../redux/slices/booksSlice';
 
 import './BookList.css';
 import { BsBookmarkPlusFill } from 'react-icons/bs';
@@ -17,7 +18,7 @@ import {
 } from '../../redux/slices/filterSlice';
 
 function BookList() {
-  let books = useSelector((state) => state.books); //массив книг из состояния
+  let books = useSelector(selectBook); //массив книг из состояния
   let titleFilter = useSelector(selectTitleFilter); //поле фильтра по заголовку
   const authorFilter = useSelector(selectAuthorFilter); //поле фильтра по автору
   const favoriteFilter = useSelector(selectFaforiteFilter); //фильтра по чекбокс favorite
