@@ -45,6 +45,14 @@ const booksSlice = createSlice({
         state.push(createBookWithID(action.payload, 'API'));
       }
     });
+    // {
+    //   [fetchBook.fulfilled]: (state, action) => {
+    //     if (action.payload.title && action.payload.author) {
+    //       state.push(createBookWithID(action.payload, 'API'));
+    //     }
+    //   },
+
+    //---------------------------------------------------
     // builder.addCase(fetchBook.rejected, (state, action) => {
     //   console.log(action);
     // });
